@@ -45,7 +45,7 @@
 
 <style lang="scss">
 .energy-container {
-  min-width: 80rem;
+  min-width: 100rem;
   display: flex;
   flex-direction: row;
 }
@@ -104,7 +104,7 @@
 }
 
 .energy-content {
-  width: 50rem;
+  flex: 1;
   height: auto;
   padding: 2rem 3rem;
   flex: 1;

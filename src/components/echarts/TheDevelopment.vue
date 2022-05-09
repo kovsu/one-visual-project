@@ -1,17 +1,25 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { ECharts, EChartsOption, init } from "echarts";
+import { getDevelopment } from "../../api/get";
 
-onMounted(() => {
+onMounted(async () => {
+  let res = (await getDevelopment()) as any;
+  console.log(res);
+  let legendData = res.data[0];
+  let data1 = res.data[1];
+  let data2 = res.data[2];
+  let data3 = res.data[3];
+
   const charEle = document.getElementById("development") as HTMLElement;
   const charEch: ECharts = init(charEle);
   charEch.clear();
   const option: EChartsOption = {
     tooltip: {
-      trigger: "axis"
+      trigger: "axis",
     },
     legend: {
-      data: ["Email", "Union Ads", "Video Ads", "Direct", "Search Engine"],
+      data: ["经济发展指标", "能源发展指标", "环境发展指标"],
     },
     grid: {
       left: "3%",
@@ -21,41 +29,31 @@ onMounted(() => {
     xAxis: {
       type: "category",
       boundaryGap: false,
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: legendData,
     },
     yAxis: {
       type: "value",
+      min:0.7,
+      max:1.05
     },
     series: [
       {
-        name: "Email",
+        name: "能源发展指标",
         type: "line",
-        stack: "Total",
-        data: [120, 132, 101, 134, 90, 230, 210],
+        // stack: "Total",
+        data: data1,
       },
       {
-        name: "Union Ads",
+        name: "经济发展指标",
         type: "line",
-        stack: "Total",
-        data: [220, 182, 191, 234, 290, 330, 310],
+        // stack: "Total",
+        data: data2,
       },
       {
-        name: "Video Ads",
+        name: "环境发展指标",
         type: "line",
-        stack: "Total",
-        data: [150, 232, 201, 154, 190, 330, 410],
-      },
-      {
-        name: "Direct",
-        type: "line",
-        stack: "Total",
-        data: [320, 332, 301, 334, 390, 330, 320],
-      },
-      {
-        name: "Search Engine",
-        type: "line",
-        stack: "Total",
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        // stack: "Total",
+        data: data3,
       },
     ],
   };

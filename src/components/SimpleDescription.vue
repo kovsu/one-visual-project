@@ -1,5 +1,16 @@
 <script setup lang="ts">
+import { onMounted, reactive } from "vue";
+import { getSimpleDes } from "../api/get";
 
+let des = reactive({
+  arr: [],
+});
+
+onMounted(async () => {
+  let res = (await getSimpleDes()) as any;
+  // console.log(res);
+  des.arr = res.data;
+});
 </script>
 
 <template>
@@ -7,22 +18,34 @@
     <div class="simple-description__item">
       <p class="simple-description__title">森林总面积</p>
       <span class="simple-description__unit">万公顷</span>
-      <p class="simple-description__num simple-description__num--1">40000</p>
+      <p class="simple-description__num simple-description__num--1">
+        {{ des.arr[0] }}
+      </p>
     </div>
     <div class="simple-description__item">
       <p class="simple-description__title">造林总面积</p>
       <span class="simple-description__unit">万公顷</span>
-      <p class="simple-description__num simple-description__num--2">707</p>
+      <p class="simple-description__num simple-description__num--2">
+        {{ des.arr[1] }}
+      </p>
     </div>
     <div class="simple-description__item">
-      <p class="simple-description__title simple-description__unit--2">能源消耗</p>
-      <span class="simple-description__unit">亿吨</span>
-      <p class="simple-description__num simple-description__num--3">21.4</p>
+      <p class="simple-description__title simple-description__unit--2">
+        能源消耗
+      </p>
+      <span class="simple-description__unit">万吨</span>
+      <p class="simple-description__num simple-description__num--3">
+        {{ des.arr[2] }}
+      </p>
     </div>
     <div class="simple-description__item">
-      <p class="simple-description__title simple-description__unit--2">固碳量</p>
-      <span class="simple-description__unit">亿吨</span>
-      <p class="simple-description__num simple-description__num--4">18.2</p>
+      <p class="simple-description__title simple-description__unit--2">
+        固碳量
+      </p>
+      <span class="simple-description__unit">百万吨</span>
+      <p class="simple-description__num simple-description__num--4">
+        {{ des.arr[3] }}
+      </p>
     </div>
   </div>
 </template>
@@ -37,7 +60,6 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-
 
   &__item {
     padding: 0 1rem;
@@ -71,7 +93,7 @@
     font-weight: 700;
     color: #c4c4c4;
     z-index: 1;
-}
+  }
 
   &__num {
     display: inline-block;
@@ -81,21 +103,20 @@
     letter-spacing: 1px;
 
     &--1 {
-      @include text-color($color-primary-light, $color-primary-dark)
+      @include text-color($color-primary-light, $color-primary-dark);
     }
 
     &--2 {
-      @include text-color($color-secondary-light, $color-secondary-dark)
+      @include text-color($color-secondary-light, $color-secondary-dark);
     }
 
     &--3 {
-      @include text-color($color-tertiary-light, $color-tertiary-dark)
+      @include text-color($color-tertiary-light, $color-tertiary-dark);
     }
 
     &--4 {
-      @include text-color($color-fourth-light, $color-fourth-dark)
+      @include text-color($color-fourth-light, $color-fourth-dark);
     }
-  } 
-
+  }
 }
 </style>

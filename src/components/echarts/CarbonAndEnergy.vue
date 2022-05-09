@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { ECharts, EChartsOption, init } from "echarts";
+import { getCarbonAndEnergy } from "../../api/get";
 
-onMounted(() => {
+onMounted(async () => {
+  let res = await getCarbonAndEnergy() as any;
+  // console.log(res);
+  let xData = res.data[0];
+  let yData = res.data[1];
+
   const charEle = document.getElementById("carbon-energy") as HTMLElement;
   const charEch: ECharts = init(charEle);
   charEch.clear();
@@ -10,14 +16,14 @@ onMounted(() => {
     xAxis: {
       type: "category",
       boundaryGap: false,
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: xData,
     },
     yAxis: {
       type: "value",
     },
     series: [
       {
-        data: [820, 932, 901, 934, 1290, 1330, 1320],
+        data: yData,
         type: "line",
         areaStyle: {},
       },

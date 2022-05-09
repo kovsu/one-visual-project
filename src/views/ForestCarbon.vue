@@ -16,10 +16,7 @@ const show = ref(false);
         </svg>
         <h2 class="heading-secondary">森林病害</h2>
         <p class="paragraph">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam non
-          laboriosam, eum iure, voluptatem aut maxime reiciendis distinctio
-          inventore sint magnam illum quos eaque vitae voluptate libero at hic
-          modi.
+          在2020年，森林病害发生面积达295.14万公顷，与固碳量关系系数达0.617，对固碳量的影响处于中等，相较于造林，我们更应该防治病虫灾害。
         </p>
       </div>
       <div class="forest-description__item">
@@ -28,10 +25,7 @@ const show = ref(false);
         </svg>
         <h2 class="heading-secondary">火灾</h2>
         <p class="paragraph">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam non
-          laboriosam, eum iure, voluptatem aut maxime reiciendis distinctio
-          inventore sint magnam illum quos eaque vitae voluptate libero at hic
-          modi.
+          在2020年，火灾受害面积达8526.2公顷，与固碳量关系系数达0.789，对固碳量的影响最大，我们要尽量避免森林火灾的发生。
         </p>
       </div>
       <div class="forest-description__item">
@@ -40,10 +34,7 @@ const show = ref(false);
         </svg>
         <h2 class="heading-secondary">造林面积</h2>
         <p class="paragraph">
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quisquam non
-          laboriosam, eum iure, voluptatem aut maxime reiciendis distinctio
-          inventore sint magnam illum quos eaque vitae voluptate libero at hic
-          modi.
+          在2020年，造林面积达6933.7千公顷，与固碳量关系系数达0.508，关联系数较小，但也存在一定的关系，在造林的同时也要防止乱砍乱伐。
         </p>
       </div>
     </div>
@@ -55,10 +46,10 @@ const show = ref(false);
       </div>
       <div class="carbon-rain__way">
         <p class="carbon-rain__paragraph">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore
-          maiores molestiae praesentium incidunt obcaecati provident quam,
-          expedita et atque dignissimos excepturi? Ea minima vitae provident
-          eligendi maiores alias nobis nisi!
+          为了探究哪些因素与总体固碳量有较为明显的简单线性关系，使用 Pearson
+          相关系数对变量之间进行相关分析，为防止数值差异的影响，对原始数据进行归一化处理，使得指标之间的量级相同，方便比较。使用
+          min-max 归一化方法，对原始数线性变换。计算得出 Z=2.5>1.96,
+          落入拒绝域，因此我们有 95%的把握认为森林固碳量与降雨量有关系。
         </p>
         <button class="carbon-rain__btn" @click="show = true">生成结果</button>
       </div>
@@ -73,13 +64,7 @@ const show = ref(false);
       <div class="carbon-forest__left">
         <h2 class="heading-secondary">树木年龄与固碳量</h2>
         <p class="carbon-forest__des">
-          Lorem ipsum dolor sit, amet consectetur adipisicing elit. Suscipit
-          corrupti impedit distinctio odit esse adipisci maxime expedita
-          praesentium, quod, recusandae excepturi velit incidunt reprehenderit
-          rem vero. Laborum, aspernatur! Autem, ipsum? Lorem ipsum dolor sit
-          amet consectetur adipisicing elit. Alias facilis, expedita eius
-          nesciunt sed quam veniam commodi accusamus. Qui non voluptatibus
-          reprehenderit ea. Nisi, aliquid nemo ipsam ea dolore maiores?
+          通过调查我们发现树木固碳量与树木的年龄具有一定关系，我们选择普遍的树木年龄固碳能力的数据进行分析，得到相关直方图并进行拟合，从图中我们可以发现中龄树木的固碳能力最强，低龄木以及老龄木的固碳量均不及中龄木。具体说来，由于低龄木的整体储备少，光合作用的积累并不占优势，而对于老龄木呼吸作用与光合作用的固碳量几乎持平
         </p>
       </div>
       <div class="carbon-forest__right">
@@ -96,17 +81,15 @@ const show = ref(false);
           <th>森林面积</th>
           <th>年降雨量</th>
           <th>中龄林占比</th>
-          <th>砍伐面积</th>
         </tr>
         <tr>
           <td>关联系数</td>
-          <td>0.563</td>
-          <td>0.541</td>
-          <td>0.723</td>
-          <td>0.334</td>
-          <td>0.433</td>
-          <td>0.882</td>
-          <td>0.234</td>
+          <td>0.617</td>
+          <td>0.789</td>
+          <td>0.508</td>
+          <td>0.423</td>
+          <td>0.824</td>
+          <td>0.513</td>
         </tr>
       </table>
       <CarbonAndForestArgs />

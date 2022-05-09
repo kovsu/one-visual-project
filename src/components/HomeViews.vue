@@ -108,4 +108,10 @@ const card = reactive({
     transform: scaleX(1);
   }
 }
+
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 </style>

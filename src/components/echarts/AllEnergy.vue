@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
 import { ECharts, EChartsOption, init } from "echarts";
+import { getAllEnergy } from "../../api/get";
 
-onMounted(() => {
+onMounted(async () => {
+  let res = (await getAllEnergy()) as any;
+  let data = res.data;
+
   const charEle = document.getElementById("all-energy") as HTMLElement;
   const charEch: ECharts = init(charEle);
   charEch.clear();
@@ -16,13 +20,7 @@ onMounted(() => {
         name: "Access From",
         type: "pie",
         radius: "50%",
-        data: [
-          { value: 1048, name: "Search Engine" },
-          { value: 735, name: "Direct" },
-          { value: 580, name: "Email" },
-          { value: 484, name: "Union Ads" },
-          { value: 300, name: "Video Ads" },
-        ],
+        data,
         emphasis: {
           itemStyle: {
             shadowBlur: 10,
