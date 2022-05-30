@@ -60,10 +60,10 @@ export const getCarbonForestArgs = () =>
     url: "/relation_forest",
   });
 
-export const getCoalStruct = () =>
+export const getCoalStruct = (year: number, month: number) =>
   request({
     method: "GET",
-    url: "/predict",
+    url: `/predict_new?year=${year}&month=${month}`,
   });
 
 export const getEnergyStruct = () =>

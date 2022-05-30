@@ -3,6 +3,10 @@ import { onMounted } from "vue";
 import { ECharts, EChartsOption, init } from "echarts";
 import { getEnergyStruct } from "../../api/get";
 
+const emit = defineEmits<{
+  (e: "change", status: boolean): void;
+}>();
+
 onMounted(async () => {
   let res = (await getEnergyStruct()) as any;
   console.log(res);
@@ -11,51 +15,54 @@ onMounted(async () => {
   let data2 = res.data[2];
   let data3 = res.data[3];
 
-  const charEle = document.getElementById("energy-struct") as HTMLElement;
-  const charEch: ECharts = init(charEle);
-  charEch.clear();
-  const option: EChartsOption = {
-    tooltip: {
-      trigger: "axis",
-    },
-    legend: {
-      data: ["煤炭", "汽油", "天然气"],
-    },
-    grid: {
-      left: "3%",
-      bottom: "13%",
-      containLabel: true,
-    },
-    xAxis: {
-      type: "category",
-      boundaryGap: false,
-      data: legendData,
-    },
-    yAxis: {
-      type: "value",
-    },
-    series: [
-      {
-        name: "煤炭",
-        type: "line",
-        // stack: "Total",
-        data: data1,
+  emit("change", true);
+  setTimeout(() => {
+    const charEle = document.getElementById("energy-struct") as HTMLElement;
+    const charEch: ECharts = init(charEle);
+    charEch.clear();
+    const option: EChartsOption = {
+      tooltip: {
+        trigger: "axis",
       },
-      {
-        name: "汽油",
-        type: "line",
-        // stack: "Total",
-        data: data2,
+      legend: {
+        data: ["煤炭", "汽油", "天然气"],
       },
-      {
-        name: "天然气",
-        type: "line",
-        // stack: "Total",
-        data: data3,
+      grid: {
+        left: "3%",
+        bottom: "13%",
+        containLabel: true,
       },
-    ],
-  };
-  charEch.setOption(option);
+      xAxis: {
+        type: "category",
+        boundaryGap: false,
+        data: legendData,
+      },
+      yAxis: {
+        type: "value",
+      },
+      series: [
+        {
+          name: "煤炭",
+          type: "line",
+          // stack: "Total",
+          data: data1,
+        },
+        {
+          name: "汽油",
+          type: "line",
+          // stack: "Total",
+          data: data2,
+        },
+        {
+          name: "天然气",
+          type: "line",
+          // stack: "Total",
+          data: data3,
+        },
+      ],
+    };
+    charEch.setOption(option);
+  }, 1000);
 });
 </script>
 
@@ -68,4 +75,5 @@ onMounted(async () => {
   width: 60rem;
   height: 50rem;
 }
+
 </style>

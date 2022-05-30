@@ -19,7 +19,7 @@ onMounted(async () => {
       trigger: "axis",
     },
     legend: {
-      data: ["经济发展指标", "能源发展指标", "环境发展指标"],
+      data: ["能源发展指标", "经济发展指标", "环境发展指标"],
     },
     grid: {
       left: "3%",
@@ -37,23 +37,23 @@ onMounted(async () => {
       max:1.05
     },
     series: [
-      {
+            {
         name: "能源发展指标",
         type: "line",
         // stack: "Total",
-        data: data1,
+        data: data3,
       },
       {
         name: "经济发展指标",
         type: "line",
         // stack: "Total",
-        data: data2,
+        data: data1,
       },
       {
         name: "环境发展指标",
         type: "line",
         // stack: "Total",
-        data: data3,
+        data: data2,
       },
     ],
   };

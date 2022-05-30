@@ -2,7 +2,7 @@ import axios, { AxiosRequestConfig } from "axios";
 
 // create 相当于浅复制了一个axios
 const request = axios.create({
-  baseURL: "http://10.161.45.78:5000/",
+  baseURL: "http://10.161.91.93:5000/",
 });
 
 export default <T>(config: AxiosRequestConfig) => {
